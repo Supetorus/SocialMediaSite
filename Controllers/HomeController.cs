@@ -18,12 +18,17 @@ namespace SocialMediaSite.Controllers
 			_logger = logger;
 		}
 
-		public IActionResult Index()
+		public IActionResult Home()
 		{
 			return View();
 		}
 
-		public IActionResult Privacy()
+		public IActionResult About()
+		{
+			return View();
+		}
+
+		public IActionResult Login()
 		{
 			return View();
 		}
