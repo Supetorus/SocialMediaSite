@@ -1,0 +1,8 @@
+﻿@model UserInfo
+
+<form asp-controller="Auth" asp-action="UserInfo" method="get">
+	<input type="text" name="userID" value="@Model.ID" hidden />
+	<button type="submit">
+		@Model.UserName
+	</button>
+</form>

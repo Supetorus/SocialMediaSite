@@ -1,0 +1,73 @@
+SocialMediaSite Todo
+
+Styling - Look and feel uniform across site
+[ ] Home page
+[ ] About page
+[ ] Login and Register
+[ ] Logout
+[ ] User Pages
+[ ] Edit User Page
+[ ] Search for user
+
+Layout page
+[ ] Header
+[ ] Footer
+[ ] Nav
+[ ] Signin
+
+Home page
+[ ] logo
+[ ] blurb
+[ ] Welcome
+
+About page
+[ ] About me (name, cohort, blurb about site)
+
+Identity pages
+[ ] Login
+[ ] Logout
+[ ] Change info
+
+Registration
+[X] Users can register
+[X] Username is unique
+[X] Password restrictions
+
+User page
+[X] Picture
+[X] More pictures link
+[X] About me
+	[X] Name
+	[X] 3 details
+	[X] User able to edit
+[X] Show messages from other users
+	[X] contains link to other user
+[X] Post new messages on own page
+[X] Able to leave message if not own page
+
+View Images
+[X] Shows images linked to this user
+[X] Each image is its own partial
+[ ] Images scale to fit nicely
+[X] Link back to profile
+
+Edit profile page
+[ ] Able to edit all data associated with account
+[X] Fields properly validated and done in form
+	[X] Show errors
+
+User list / search
+[X] Able to search for other users
+[X] Filterable
+[X] Search is case insensitive and uses .contains
+
+Extra
+[X] Use Entity Framework, DBContxt, DbSet, Dependency injection, to connect to a database
+[ ] Admin area to allow roles to be created and assign users.
+[X] At least one custom route (ex username in url to go to profile page.
+
+Extra extra
+[ ] Implement character count on description and posts
+[X] Editable posts
+	[ ] Can only edit the post that is supposed to be edited (can't change html form and mess it up)
+[X] Users can delete posts

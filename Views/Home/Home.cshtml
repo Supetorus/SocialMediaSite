@@ -1,1 +1,10 @@
-﻿<h1>Welcome to this social media site!</h1>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<h1>Welcome to this social media site!</h1>
+
+@if (SignInManager.IsSignedIn(User))
+{
+	<a asp-controller="Auth" asp-action="UserInfo">User Info</a>
+}

@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SocialMediaSite.Data;
+using SocialMediaSite.Interfaces;
 
 namespace SocialMediaSite
 {
@@ -24,11 +25,30 @@ namespace SocialMediaSite
 			services.AddDbContext<ApplicationDbContext>(options =>
 				options.UseSqlServer(
 					Configuration.GetConnectionString("DefaultConnection")));
+
+			services.AddDbContext<UserContext>(options =>
+			{
+				options.UseSqlServer(Configuration.GetConnectionString("UserDB"));
+			});
+			services.AddTransient<IDataAccessLayer, UsersDAL>();
+
 			services.AddDatabaseDeveloperPageExceptionFilter();
 
 			services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
 				.AddEntityFrameworkStores<ApplicationDbContext>();
+
+			services.Configure<IdentityOptions>(options =>
+			{
+				options.Password.RequiredLength = 8;
+				options.Password.RequireDigit = true;
+				options.Password.RequiredUniqueChars = 0;
+				options.Password.RequireNonAlphanumeric = false;
+				options.Password.RequireLowercase = true;
+				options.Password.RequireUppercase = true;
+			});
+
 			services.AddControllersWithViews();
+
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +78,31 @@ namespace SocialMediaSite
 				endpoints.MapControllerRoute(
 					name: "default",
 					pattern: "{controller=Home}/{action=Home}/{id?}");
+
+				endpoints.MapControllerRoute(
+					name: "GoToUser",
+					pattern: "/u/{username}",
+					defaults: new { controller = "Auth", action = "GoToUser" }
+					);
+
+				endpoints.MapControllerRoute(
+					name: "EditPost",
+					pattern: "/p/Edit/{postID:int}",
+					defaults: new { controller = "Auth", action = "EditPost" }
+					);
+
+				endpoints.MapControllerRoute(
+					name: "DeletePost",
+					pattern: "/p/Delete/{postID:int}",
+					defaults: new { controller = "Auth", action = "DeletePost" }
+					);
+
+				endpoints.MapControllerRoute(
+					name: "UserImages",
+					pattern: "/u/{username}/images",
+					defaults: new { controller = "Auth", action = "UserImages" }
+					);
+
 				endpoints.MapRazorPages();
 			});
 		}

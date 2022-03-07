@@ -1,0 +1,30 @@
+﻿@model SearchViewModel
+
+<form asp-controller="Auth" asp-action="Search" method="post">
+	<label asp-for="SearchTerm"></label>
+	<input asp-for="SearchTerm" />
+	<label asp-for="Condition.FilterCondition"></label> 
+	<select asp-for="Condition.FilterCondition" asp-items="Html.GetEnumSelectList<FilterCondition>()"></select>
+	<label asp-for="Condition.FloatCondition.Comparator"></label> 
+	<select asp-for="Condition.FloatCondition.Comparator" asp-items="Html.GetEnumSelectList<FloatCondition.FloatConditionType>()"></select>
+	<label asp-for="Condition.FloatCondition.ComparisonValue"></label>
+	<input asp-for="Condition.FloatCondition.ComparisonValue" />
+	<button type="submit">Search</button>
+</form>
+
+@if (Model == null)
+{
+	<p>Try searching for a user.</p>
+
+}
+else if (Model.Results.Count() == 0)
+{
+	<p>There were no results for the search.</p>
+}
+else
+{
+	foreach (UserInfo userInfo in Model.Results)
+	{
+		<partial name="_User" for="@userInfo" />
+	}
+}

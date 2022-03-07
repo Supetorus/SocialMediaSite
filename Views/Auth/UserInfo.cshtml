@@ -1,0 +1,60 @@
+﻿@model UserInfoViewModel
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@if (@Model.UserInfo == null)
+{
+	<h1>Welcome! Please enter your information to make a new profile.</h1>
+	<form asp-controller="Auth" asp-action="NewUser">
+		<div asp-validation-summary="All"></div>
+		<input asp-for="UserInfo.ID" value="@ViewBag.ID" hidden/>
+		<span asp-validation-for="UserInfo.UserName"></span>
+		<label asp-for="UserInfo.UserName"></label>
+		<input asp-for="UserInfo.UserName" />
+		<span asp-validation-for="UserInfo.Age"></span>
+		<label asp-for="UserInfo.Age"></label>
+		<input asp-for="UserInfo.Age" />
+		<span asp-validation-for="UserInfo.Location"></span>
+		<label asp-for="UserInfo.Location"></label>
+		<input asp-for="UserInfo.Location" />
+		<span asp-validation-for="UserInfo.Image"></span>
+		<label asp-for="UserInfo.Image"></label>
+		<input asp-for="UserInfo.Image" />
+		<span asp-validation-for="UserInfo.Description"></span>
+		<label asp-for="UserInfo.Description"></label>
+		<input asp-for="UserInfo.Description">
+		<button type="submit">Create Profile</button>
+	</form>
+}
+else
+{ // UserInfo is not null
+
+	<img src="@Model.UserInfo.Image">
+	<h1>@Model.UserInfo.UserName</h1>
+	<p>@Model.UserInfo.Age</p>
+	<p>@Model.UserInfo.Location</p>
+	<p>@Model.UserInfo.Description</p>
+	<a href="/u/@Model.UserInfo.UserName/images">Pictures</a>
+	<form asp-controller="Auth" asp-action="NewPost">
+		<input name="posterID" value="@ViewBag.ID" hidden />
+		<input name="postedID" value="@Model.UserInfo.ID" hidden />
+		<input name="text" type="text" placeholder="Write a post here"/>
+		<input name="image" type="text" placeholder="Image URL" />
+		<button type="submit">Post</button>
+	</form>
+
+	@if (ViewBag.ID == Model.UserInfo.ID)
+	{
+		<a asp-controller="Auth" asp-action="EditUser">Edit</a>
+	}
+
+	if (@Model.Posts != null)
+	{
+		@foreach (UserPost p in Model.Posts)
+		{
+			<partial name="_UserPost" for="@p"/>
+		}
+	}
+}

@@ -1,0 +1,20 @@
+﻿@model UserPost
+
+@if (Model.PosterID == ViewBag.ID)
+{
+	@*There is a security risk here because the user could submit
+	  this form with a different id and edit somebody else's post*@
+	<form asp-controller="Auth" asp-action="PostEdit">
+		<input asp-for="Id" value="@Model.Id" hidden>
+		<input asp-for="PostedID" value="@Model.PostedID" hidden>
+		<label asp-for="Text"></label>
+		<input asp-for="Text" value="@Model.Text">
+		<label asp-for="ImageID"></label>
+		<input asp-for="ImageID"  value="@Model.ImageID">
+		<button type="submit">Edit</button>
+	</form>
+}
+else
+{
+	<p>You can't view this post.</p> 
+}
