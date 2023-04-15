@@ -35,12 +35,12 @@ namespace SocialMediaSite.Models
 			{
 				case FloatConditionType.LESS_THAN:
 					return value < ComparisonValue;
-				case FloatConditionType.LESS_THAN_OR_EQUAL:
-					return value <= ComparisonValue;
+				//case FloatConditionType.LESS_THAN_OR_EQUAL:
+				//	return value <= ComparisonValue;
 				case FloatConditionType.GREATER_THAN:
 					return value > ComparisonValue;
-				case FloatConditionType.GREATER_THAN_OR_EQUAL:
-					return value >= ComparisonValue;
+				//case FloatConditionType.GREATER_THAN_OR_EQUAL:
+				//	return value >= ComparisonValue;
 				case FloatConditionType.EQUAL:
 					return value == ComparisonValue;
 				default: return false;

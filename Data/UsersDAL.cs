@@ -79,7 +79,7 @@ namespace SocialMediaSite.Data
 		{
 			return _userContext.Users.Where(u => u.UserName.ToLower().Contains(searchTerm.ToLower()));
 		}
-		public bool UniqueUsername(string userName)
+		public bool IsUniqueUsername(string userName)
 		{
 			return !_userContext.Users.Where(u => u.UserName == userName).Any();
 		}

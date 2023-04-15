@@ -1,25 +1,30 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SocialMediaSite.Models;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SocialMediaSite.Controllers
 {
 	public class HomeController : Controller
 	{
-		private readonly ILogger<HomeController> _logger;
+		//private readonly ILogger<HomeController> _logger;
+		private readonly SignInManager<IdentityUser> _signInManager;
+		//private readonly UserManager<IdentityUser> _userManager;
 
-		public HomeController(ILogger<HomeController> logger)
+		public HomeController(ILogger<HomeController> logger, SignInManager<IdentityUser> SignInManager, UserManager<IdentityUser> UserManager)
 		{
-			_logger = logger;
+			//_logger = logger;
+			_signInManager = SignInManager;
+			//_userManager = UserManager;
 		}
 
 		public IActionResult Home()
 		{
+			if (_signInManager.IsSignedIn(User))
+			{
+				return Redirect("/Auth/UserInfo");
+			}
 			return View();
 		}
 
@@ -29,6 +34,11 @@ namespace SocialMediaSite.Controllers
 		}
 
 		public IActionResult Login()
+		{
+			return View();
+		}
+
+		public IActionResult LoggedOut()
 		{
 			return View();
 		}

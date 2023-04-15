@@ -1,29 +1,44 @@
 ﻿@model UserInfo
 
-@if (@Model == null)
-{
-	<p>There was an error, model is null.</p>
-}
-else
-{
-	<h1>Here you can edit a user.</h1>
-	<form asp-controller="Auth" asp-action="UserEdits">
-		@*<input asp-for="ID" value="@ViewBag.ID" hidden/>*@
-		<span asp-validation-for="UserName"></span>
-		<label asp-for="UserName"></label>
-		<input asp-for="UserName" />
-		<span asp-validation-for="Age"></span>
-		<label asp-for="Age"></label>
-		<input asp-for="Age" />
-		<span asp-validation-for="Location"></span>
-		<label asp-for="Location"></label>
-		<input asp-for="Location" />
-		<span asp-validation-for="Image"></span>
-		<label asp-for="Image"></label>
-		<input asp-for="Image" />
-		<span asp-validation-for="Description"></span>
-		<label asp-for="Description"></label>
-		<input asp-for="Description">
-		<button type="Submit">Update Profile</button>
-	</form>
-}
+<div class="page-container">
+	@if (@Model == null)
+	{
+		<p>There was an error, model is null.</p>
+	}
+	else
+	{
+		<div class="box-element">
+			<form asp-controller="Auth" asp-action="UserEdits">
+				@*<input asp-for="ID" value="@ViewBag.ID" hidden/>*@
+				<span class="validation-error form-element" asp-validation-for="UserName"></span>
+				<div class="row row-between">
+					<label class="form-element" asp-for="UserName"></label>
+					<input class="form-element" asp-for="UserName" />
+				</div>
+				<span class="validation-error form-element" asp-validation-for="Age"></span>
+				<div class="row row-between">
+					<label class="form-element" asp-for="Age"></label>
+					<input class="form-element" asp-for="Age" />
+				</div>
+				<span class="validation-error form-element" asp-validation-for="Location"></span>
+				<div class="row row-between">
+					<label class="form-element" asp-for="Location"></label>
+					<input class="form-element" asp-for="Location" />
+				</div>
+				<span class="validation-error form-element" asp-validation-for="Image"></span>
+				<div class="row row-between">
+					<label class="form-element" asp-for="Image"></label>
+					<input class="form-element" asp-for="Image" />
+				</div>
+				<span asp-validation-for="Description"></span>
+				<div class="row row-between">
+					<label class="form-element" asp-for="Description"></label>
+					<textarea class="form-element" asp-for="Description"></textarea>
+				</div>
+				<div class="row row-center">
+					<button class="button" type="Submit">Update Profile</button>
+				</div>
+			</form>
+		</div>
+	}
+</div>

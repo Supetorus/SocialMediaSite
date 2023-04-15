@@ -2,9 +2,11 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
-<h1>Welcome to this social media site!</h1>
-
-@if (SignInManager.IsSignedIn(User))
-{
-	<a asp-controller="Auth" asp-action="UserInfo">User Info</a>
-}
+<div class="page-container">
+	<h1>Welcome to HappySocial!</h1>
+	<div class="home-images">
+		<img class="home-image" src="/images/blue_sky.jpg" />
+		<img class="home-image" src="/images/flower_girl.jpg" />
+		<img class="home-image" src="/images/happy_jump.jpg" />
+	</div>
+</div>

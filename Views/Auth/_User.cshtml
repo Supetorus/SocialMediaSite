@@ -1,8 +1,16 @@
 ﻿@model UserInfo
 
-<form asp-controller="Auth" asp-action="UserInfo" method="get">
-	<input type="text" name="userID" value="@Model.ID" hidden />
-	<button type="submit">
-		@Model.UserName
-	</button>
-</form>
+@{
+	string profileImageLink = string.IsNullOrWhiteSpace(@Model.Image) ? "" : (@Model.Image.Substring(0, 4) == "http" ? @Model.Image : "/images/" + @Model.Image);
+}
+
+<div class="listed-user box-element">
+	<a href="/u/@Model.UserName">
+		<div class="row">
+			<img src="@profileImageLink" class="image-thumbnail" />
+			<div class="button">
+				@Model.UserName
+			</div>
+		</div>
+	</a>
+</div>

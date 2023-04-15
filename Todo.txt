@@ -67,6 +67,7 @@ Extra
 [X] At least one custom route (ex username in url to go to profile page.
 
 Extra extra
+[ ] Able to comment on posts
 [ ] Implement character count on description and posts
 [X] Editable posts
 	[ ] Can only edit the post that is supposed to be edited (can't change html form and mess it up)

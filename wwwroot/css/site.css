@@ -1,14 +1,300 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+﻿@media only screen and (min-width: 800) {
+	:root {
+		font-size: 16px;
+	}
+}
+
+* {
+	box-sizing: border-box;
+}
+
+:root {
+	--text-background-color: #F0F7F4;
+	--box-color: #99E1D9;
+	--content-box-color: #70ABAF;
+	--button-color-hover: #76b2b6;
+	--page-background-color: #32292F;
+	--userinfo-background-color: #70ABAF;
+	--userinfo-color: #32292F;
+	--button-background-color: #70ABAF;
+	--button-text-color: #32292F;
+	/*--link-text-color: #705D56;*/
+	--link-text-color: #32292F;
+}
+
+body {
+	background-color: var(--page-background-color);
+}
+
+.profile-image {
+	width: 20rem;
+	height: 20rem;
+	border-radius: 2rem;
+	object-fit: cover;
+}
+
+.profile-image-space {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 3rem;
+	width: 22rem;
+	height: 22rem;
+	margin: 0.5rem;
+	background-color: var(--box-color);
+}
+
+.profile-bio {
+	display: flex;
+	flex-direction: column;
+	margin: 0.5rem;
+	padding: 2rem;
+	border-radius: 3rem;
+	background-color: var(--box-color);
+	max-width: 25rem;
+}
+
+.listed-user {
+	width: 100% !important;
+
+}
+
+.form-element {
+	background-color: var(--text-background-color);
+	border-radius: 0.5rem;
+	margin: 0.5rem;
+	padding: 0.5rem;
+}
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	width: 100%;
+}
+
+.row-center {
+	justify-content: center;
+}
+
+.row-between {
+	justify-content: space-between;
+}
+
+.validation-error {
+	color: #c50202;
+	padding: 0;
+}
+
+.profile-link {
+	/*line-height: 3rem;*/
+}
+
+.user-post {
+	background-color: var(--box-color);
+	border-radius: 1rem;
+	padding: 1rem;
+	margin: 1rem;
+	width: 25rem;
+}
+
+.box-element {
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+
+	margin: 0.5rem;
+	padding: 1rem;
+	border-radius: 3rem;
+	background-color: var(--box-color);
+}
+
+.post-text {
+	background-color: var(--text-background-color);
+	border-radius: 0.5rem;
+	margin: 0.5rem 0;
+	padding: 0.5rem;
+}
+
+.post-image {
+	display: block;
+	max-width: 23rem;
+	max-height: 23rem;
+	object-fit: scale-down;
+	border-radius: 2rem;
+	margin: 1rem auto;
+}
+
+.display-image {
+	display: block;
+	max-width: 23rem;
+	max-height: 23rem;
+	object-fit: scale-down;
+	border-radius: 2rem;
+	margin: 1rem auto;
+}
+
+.image-thumbnail {
+	width: 3rem;
+	height: 3rem;
+	object-fit: cover;
+	border-radius: 100rem;
+	margin: 0.5rem;
+}
+
+.post-controls {
+	display: flex;
+	justify-content: center;
+}
+
+.button {
+	text-align: center;
+	background-color: var(--button-background-color);
+	padding: 0.5rem;
+	margin: 0 0.5rem;
+	border-radius: 0.5rem;
+	color: var(--button-text-color);
+	box-sizing: border-box;
+	width: fit-content;
+}
+.button:hover {
+	background-color: var(--button-color-hover);
+}
+
+.userinfo-page-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-radius: 3rem;
+	margin: 2rem auto;
+	padding: 2rem;
+	color: var(--userinfo-color);
+	width: 80%;
+	background-color: var(--userinfo-background-color);
+}
+
+.page-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-radius: 1rem;
+	margin: 2rem auto;
+	padding: 2rem;
+	color: var(--userinfo-color);
+	width: 80%;
+	background-color: var(--userinfo-background-color);
+}
+
+.home-image {
+	width: 20rem;
+	border-radius: 2rem;
+	margin: 2rem;
+}
+.home-images {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+
+	width: 100%;
+}
+
+#new-post{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0.5rem;
+	padding: 1rem;
+	border-radius: 1rem;
+	width: 30rem;
+	background: var(--box-color);
+}
+
+#posting-text {
+	width: 100%;
+	height: 10rem;
+	margin: 0 0 1rem 0;
+	border-radius: 0.5rem;
+	padding: 0.5rem;
+	background-color: var(--text-background-color);
+}
+
+#posting-imageurl{
+	width: 100%;
+	margin: 0 0 1rem 0;
+	border-radius: 0.5rem;
+	padding: 0 0.5rem;
+	background-color: var(--text-background-color);
+}
+
+#navigation {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 80%;
+	margin: 2rem auto;
+	background-color: var(--box-color);
+	height: 6rem;
+	border-style: solid;
+	border-color: var(--content-box-color);
+	border-width: 1rem;
+	border-radius: 1rem;
+}
+
+#footer-stuff {
+	width: 50rem;
+}
+
+#account-buttons {
+	width: 0;
+	height: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	background-color: var(--box-color);
+	border: 0 solid var(--userinfo-background-color);
+	position: absolute;
+	right: 15rem;
+	top: 10rem;
+	border-radius: 1rem;
+	transition: width 0.2s ease-out, height 0.2s ease-out;
+	overflow: hidden;
+}
+
+#btn-show-account-buttons {
+	text-decoration: none;
+	font-size: 1.5rem;
+}
+
+p {
+	margin: 0;
+}
+
+a {
+	color: var(--link-text-color);
+	text-decoration: none;
+	font-size: 1.5rem;
+}
+a:hover{
+	text-decoration: none;
+	color: var(--link-text-color);
+	font-weight: bold;
+}
+
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-a.navbar-brand {
+/*a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
-}
+}*/
 
 /* Provide sufficient contrast against white background */
-a {
+/*a {
   color: #0366d6;
 }
 
@@ -22,11 +308,11 @@ a {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
-}
+}*/
 
 /* Sticky footer styles
 -------------------------------------------------- */
-html {
+/*html {
   font-size: 14px;
 }
 @media (min-width: 768px) {
@@ -49,23 +335,23 @@ html {
 button.accept-policy {
   font-size: 1rem;
   line-height: inherit;
-}
+}*/
 
 /* Sticky footer styles
 -------------------------------------------------- */
-html {
+/*html {
   position: relative;
   min-height: 100%;
 }
 
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+body {*/
+/* Margin bottom by footer height */
+/*margin-bottom: 60px;
 }
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
-}
+  line-height: 60px;*/ /* Vertically center the text there */
+/*}*/

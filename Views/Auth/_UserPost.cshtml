@@ -1,30 +1,34 @@
 ﻿@using System.Security.Claims
+@using SocialMediaSite.Controllers
 @model UserPost
 
-@*
-	For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
 @{
+	string imageLink = string.IsNullOrWhiteSpace(@Model.ImageID) ? "" : (@Model.ImageID.Substring(0, 4) == "http" ? @Model.ImageID : "/images/" + @Model.ImageID);
+	string posterImage = AuthController.GetUserImage(Model.PosterID);
+	string pi = string.IsNullOrWhiteSpace(posterImage) ? "" : (posterImage.Substring(0, 4) == "http" ? posterImage : "/images/" + posterImage);
 }
 
-<div>
-	<p>@Model.PosterName Posted this to @Model.PostedName on @Model.PostDate</p>
+<div class="user-post">
+	<p><a href="/u/@Model.PosterName" class="row-center profile-link"><img src="@pi" class="image-thumbnail"/>@Model.PosterName</a> Posted this on @Model.PostDate</p>
 	@if (Model.PosterID != Model.PostedID)
 	{
-		<a href="/u/@Model.PosterName">@Model.PosterName</a>
+		
 	}
-	<p>@Model.Text</p>
+	<p class="post-text">@Model.Text</p>
 	@if (Model.ImageID != null)
 	{
-		<img src="@Model.ImageID" />
+		<img src="@imageLink" class="post-image"/>
 	}
+
+	<div class="post-controls">
 	@if (User.FindFirstValue(ClaimTypes.NameIdentifier) == Model.PosterID)
 	{
-		<a href="/p/Edit/@Model.Id">Edit Post</a>
+		<a href="/p/Edit/@Model.Id" class="button">Edit Post</a>
 	}
 	@if (User.FindFirstValue(ClaimTypes.NameIdentifier) == Model.PosterID
-		|| User.FindFirstValue(ClaimTypes.NameIdentifier) == Model.PostedID)
+			|| User.FindFirstValue(ClaimTypes.NameIdentifier) == Model.PostedID)
 	{
-		<a href="/p/Delete/@Model.Id">Delete Post</a>
+		<a href="/p/Delete/@Model.Id" class="button">Delete Post</a>
 	}
+	</div>
 </div>

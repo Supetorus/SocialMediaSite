@@ -1,3 +1,7 @@
 ﻿@model string
 
-<img src="@Model" />
+@{
+		string imageLink = string.IsNullOrWhiteSpace(@Model) ? "" : (@Model.Substring(0, 4) == "http" ?  @Model : "/images/" +  @Model);
+}
+
+<img src="@imageLink" class="display-image"/>

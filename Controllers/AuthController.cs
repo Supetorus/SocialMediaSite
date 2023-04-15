@@ -10,7 +10,7 @@ namespace SocialMediaSite.Controllers
 	[Authorize]
 	public class AuthController : Controller
 	{
-		IDataAccessLayer _dal;
+		static IDataAccessLayer _dal;
 
 		public AuthController(IDataAccessLayer dal)
 		{
@@ -18,6 +18,10 @@ namespace SocialMediaSite.Controllers
 		}
 		public IActionResult UserEdits(UserInfo newUserInfo)
 		{
+			if (!ModelState.IsValid)
+			{
+				return View("EditUser", _dal.GetUserById(getID()));
+			}
 			if (_dal.UpdateUser(getID(), newUserInfo))
 			{
 				UserInfoViewModel uivm = new UserInfoViewModel();
@@ -46,6 +50,7 @@ namespace SocialMediaSite.Controllers
 		[HttpPost]
 		public IActionResult Search(SearchViewModel search)
 		{
+			if (search.SearchTerm == null && search.Condition.FilterCondition == FilterCondition.NONE) return View();
 			search.Generate(_dal);
 			return View(search);
 		}
@@ -75,7 +80,7 @@ namespace SocialMediaSite.Controllers
 		[HttpPost]
 		public IActionResult NewUser(UserInfoViewModel uivm)
 		{
-			if (!_dal.UniqueUsername(uivm.UserInfo.UserName)) ModelState.AddModelError("UserName", "That username is taken.");
+			if (!_dal.IsUniqueUsername(uivm.UserInfo.UserName)) ModelState.AddModelError("UserName", "That username is taken.");
 			ViewBag.ID = getID();
 			if (ModelState.IsValid)
 			{
@@ -124,6 +129,11 @@ namespace SocialMediaSite.Controllers
 		{
 			ViewBag.Username = username;
 			return View(_dal.GetImagesByUsername(username));
+		}
+
+		public static string GetUserImage(string userID)
+		{
+			return _dal.GetUserById(userID).Image;
 		}
 
 		private string getID()

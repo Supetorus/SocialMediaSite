@@ -12,7 +12,7 @@ namespace SocialMediaSite.Interfaces
 		UserInfo? GetUserByUsername(string username);
 		bool UpdateUser(string userID, UserInfo userinfo);
 		IEnumerable<UserInfo> SearchByUsername(string searchTerm);
-		bool UniqueUsername(string userName);
+		bool IsUniqueUsername(string userName);
 		void NewPost(UserPost userPost);
 		IEnumerable<UserPost> GetPostsOnUser(string userID);
 		UserPost GetPostById(int postID);
